@@ -18,19 +18,21 @@
 				</form>
 			</header>
 			<!-- This section should be hidden by default and shown when there are todos -->
-			<section class="main">
-				<input class="toggle-all" type="checkbox">
+			<section class="main">   
+				<input class="toggle-all" type="checkbox"data-ng-click="toggle()">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
 					<!-- These are here just to show the structure of the list items -->
 					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li data-ng-repeat="todo in todos">
+					<li ng-repeat="todo in todos" ng-class="{completed:todo.completed,editing:todo.id===currentEditingId}" >
 						<div class="view">
 							<input class="toggle" type="checkbox" data-ng-model="todo.completed">
-							<label>{{todo.text}}</label>
+							<label data-ng-dblclick="editing(todo.id)">{{todo.text}}</label>		
 							<button class="destroy" data-ng-click="remove(todo.id)"></button>
-						</div>
-						<input class="edit" data-ng-model="todo.text">
+						</div> 
+						<form data-ng-submit="save()">
+							<input class="edit" data-ng-model="todo.text">
+						</form>
 					</li>
 				</ul>
 			</section>
@@ -51,7 +53,7 @@
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed">Clear completed</button>
+				<button class="clear-completed" data-ng-show="existCompleted()" ng-click="clear()">Clear completed</button>
 			</footer>
 		</section>
 		<footer class="info">

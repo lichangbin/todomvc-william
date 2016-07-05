@@ -46,8 +46,47 @@
 		}	
 
 		};
+			//clear completed.他的意思是切换
+//两个终点状态，只把clear后的那个状态表现出来即可。还是x==y的样子
+		$scope.clear=function () {
+			var result=[];//此处进坑，没有var声明，所以会提示undifined
+			for (var i = 0;i<$scope.todos.length; i++) {
+			if (!$scope.todos[i].completed) {
+				result.push($scope.todos[i]);	
+			}
 
+		}
+			$scope.todos=result;
+		};
 
+		//判断是否有已经完成的,是个布尔型，在ng-shijian中比较多的应用在判断上显示之类
+		$scope.existCompleted=function () {
+			for (var i = 0;i<$scope.todos.length; i++) {
+			if ($scope.todos[i].completed) {
+				return true;	
+			}
+			
+		}
+		return false;
+		};
+		//当前编辑哪个元素，实质是更换li 元素里的两个class从而表现出不同的状态。view和editing.
+		//在h+c结构里，c默认上让editing状态是display none的，要实现他的编辑功能和状态就是要在双击时候让他的editing class激活即可。
+		//初始数据结构，一个false的值
+		 $scope.currentEditingId = -1;
+    		$scope.editing = function(id) {
+	      $scope.currentEditingId = id;
+	    };
+	    $scope.save = function() {
+	      $scope.currentEditingId = -1;
+	    };
+	    //以上是比较难理解的
+	     var now = true;
+		    $scope.toggle = function() {
+		      for (var i = 0; i < $scope.todos.length; i++) {
+		        $scope.todos[i].completed = now;
+		      }
+		      now = !now;
+		    }
 
 
 
