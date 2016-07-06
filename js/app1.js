@@ -2,7 +2,7 @@
 	'use strict';
 
 	var myApp=angular.module('MyTodoMvc',[]);
-	myApp.controller('MainController',['$scope',function($scope){
+	myApp.controller('MainController',['$scope','$location',function($scope,$location){
 
 	/*id不重复*/
 	function getId() {
@@ -88,8 +88,22 @@
 		      now = !now;
 		    }
 
+		    //筛选。比较难
+		 $scope.selector={};
+		 $scope.$location=$location;
+		 $scope.$watch('$location.path()',function (now,old) {
+		 	switch (now) {
+        case '/active':
+          $scope.selector = { completed: false };
+          break;
+        case '/completed':
+          $scope.selector = { completed: true };
+          break;
+        default:
+          $scope.selector = {};
+          break;
+      }
 
-
-
+		 });
 }]);	
 })(angular);
