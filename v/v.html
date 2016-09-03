@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    </body>
+    <!-- //<script src="//cdn.bootcss.com/babel-core/6.1.19/browser.js"></script> -->
+    <script >/*"use strict"*/
+      /* var foo=function(){this.myname='aaaa'};
+        foo.prototype.say=function(){alert(this.myname)};
+        foo.prototype.bar=function(){setTimeout(this.say,1000)};
+        foo.prototype.bbar=function(){setTimeout(alert(this),1000)};
+        var f=new foo();
+       // f.bar();
+        f.bbar();*/
+
+       var foo={
+            myname:"aaaa",
+            show:function(){alert(this.myname)},
+            bar:function(){
+                 console.log(this);
+                setTimeout(/*this.show.apply(this)*/ console.log(this.show),1000)}
+        }
+       
+        foo.bar();
+/*调用匿名函数和非匿名函数不一样,或是三层嵌套的缘故*/
+       /*var obj={
+            x:'situation',
+            show(){
+            setTimeout(
+                function(){console.log(this.x)
+                },500)
+            }
+            obj.show();*/
+       /*var obj={
+            x:'situation',
+            show(){
+                console.log(this);
+            var that=this;
+            setTimeout(
+                function(){console.log(that.x);
+                    console.log(this);
+                },500)
+            }
+        };
+        obj.show();*/
+       /* var obj={
+            x:'situation A ',
+            show(){
+            //var that=this;
+            setTimeout(
+                ()=>{console.log(that.x)
+                },500)
+            }
+
+        obj.show();*/
+        /*var PageHandler = {
+
+            id: "123456",
+
+            init: function() {
+                document.addEventListener("click",
+                event => this.doSomething(event.type), false);
+            },
+
+            doSomething: function(type) {
+                console.log("Handling " + type + " for " + this.id);
+            }
+            };
+           PageHandler.init(); */
+
+
+//内存泄漏
+           /*var parentDiv = document.createElement("div"); 
+            var childDiv = document.createElement("div"); 
+            document.body.appendChild(parentDiv); 
+            parentDiv.appendChild(childDiv); 
+*/
+           /* 解决方案
+           var parentDiv = document.createElement("div"); 
+            var childDiv = document.createElement("div"); 
+            parentDiv.appendChild(childDiv); 
+            document.body.appendChild(parentDiv); */
+
+
+    </script>
+</html>
