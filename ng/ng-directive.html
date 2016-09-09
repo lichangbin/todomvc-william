@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <style>
+    h1,h2{
+    color:purple;
+
+    }
+
+
+
+    </style>
+        <meta charset="utf-8">
+        <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+    </head>
+    <body>
+    <h1>scope的继承</h1>
+    <h2>demo1</h2>
+<div ng-app="app" ng-init="aaa='parent'">
+    parentNode: {{aaa}}
+    
+    <div ng-controller="demoController01">
+        childrenNode: {{aaa}}
+        <input ng-model="aaa"></input>
+{{aaa}}
+
+        
+        <div ng-controller="demoController02">
+            lastNode: {{aaa}}
+        </div>
+    </div>
+</div>
+
+
+<input ng-model="aaa"></input>
+{{aaa}}
+
+
+
+
+
+    </body>
+    <script>
+angular.module('app', [])
+.controller('demoController01', function($scope) {
+    $scope.aaa = "children";
+})
+.controller('demoController02', function($scope) {
+    $scope.aaa = "last"
+})
+
+
+
+
+
+
+
+
+
+    </script>
+</html>

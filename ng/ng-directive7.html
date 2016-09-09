@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <style>
+    h1,h2{
+    color:purple;
+
+    }
+
+
+
+    </style>
+        <meta charset="utf-8">
+        <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+    </head>
+    <body>
+    <h1>scope的继承</h1>
+    <h2>demo4</h2>
+    <div ng-app="app" ng-controller="mainController">
+    <div class="a">
+        <p>china</p>
+        <hello-world>
+
+            {{name}}haohaoxuexi<br>
+            <strong>尝试一下</strong>
+        </hello-world>
+    </div>
+</div>
+
+    </body>
+    <script>
+angular.module('app', [])
+.controller('mainController', function($scope) {
+    $scope.name = "yangbo5207";
+})
+.directive('helloWorld', function() {
+    return {
+        restrict: 'EA',
+        scope: {},
+        replace: false,
+        transclude: true,
+        template: '<div >你看不dddddddd见我</div>'
+    }
+})
+    </script>
+</html>

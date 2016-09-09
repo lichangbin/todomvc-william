@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <style>
+    h1,h2{
+    color:purple;
+
+    }
+
+
+
+    </style>
+        <meta charset="utf-8">
+        <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+    </head>
+    <body>
+    <h1>scope的继承</h1>
+    <h2>demo2</h2>
+<div ng-app="app" ng-controller="mainController">
+    parent: {{ name }} 
+    <br />
+    <input type="text" ng-model="name" />
+    <div my-directive></div>
+</div>
+
+
+
+    </body>
+    <script>
+angular.module('app', [])
+.controller('mainController', function($scope) {
+    $scope.name = "Jake";
+})
+.directive('myDirective', function() {
+    return {
+        restrict: 'EA',
+        scope: true,
+        replace: false,
+        template: '' +
+            '<div>' +
+                'childNode: {{ name }} ' +
+                '<br />' +
+                '<input type="text" ng-model="name">' +
+            '</div>'
+    }
+})
+
+
+
+
+
+
+
+    </script>
+</html>

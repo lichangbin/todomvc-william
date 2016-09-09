@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <style>
+    h1,h2{
+    color:purple;
+
+    }
+
+
+
+    </style>
+        <meta charset="utf-8">
+        <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+    </head>
+    <body>
+    <h1>scope的继承</h1>
+    <h2>demo3</h2>
+<div ng-app="app" ng-controller="mainController">
+    <input type="text" ng-model="color" placeholder="Enter a color"/>
+    <hello-world></hello-world>
+</div>
+
+    </body>
+    <script>
+angular.module('app', [])
+.controller('mainController', function($scope) {
+})
+.directive('helloWorld', function() {
+    return {
+        restrict: 'EA',
+        scope: true,
+        replace: true,
+        template: '<p style="background-color:{{color}}">Hello world!</p>'
+    }
+})
+
+    </script>
+</html>
