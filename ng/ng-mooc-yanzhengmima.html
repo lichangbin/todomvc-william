@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css" media="screen">
+    p{
+        text-align: center;
+        color: #f40;
+    }
+    .error{
+       
+        color:red;
+    }
+  .wrap{
+width: 200px;
+margin: 20px auto;
+  }  
+  .success{
+    color:cyan;
+  }
+</style>
+<link href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
+<!-- <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script> -->
+<!-- <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>  -->
+<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<!-- <script src="http://cdn.bootcss.com/angular.js/2.0.0-beta.17/angular2-all-testing.umd.dev.js"></script>
+ --><script>
+angular.module("myapp",[]).controller("main",function(){}).directive('pwCheck', [function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            elem.add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    var v = elem.val()===$(firstPassword).val();
+                    ctrl.$setValidity('pwmatch', v);
+                });
+            });
+        }
+    }
+}]); 
+
+
+
+
+ </script>
+</head>
+<body ng-app="myapp" ng-controller="main">
+
+<div class="form-group">
+    <label for="userPassword">密码</label>
+    <input type="password" class="form-control" id="userPassword" name="userPassword"
+          placeholder="请输入密码" ng-model="selectedUser.userPassword">
+</div>
+<div class="form-group has-feedback"
+    ng-class="{'has-success' : !usrMgrForm.confirmPassword.$pristine && usrMgrForm.confirmPassword.$valid,
+                'has-error' : !usrMgrForm.confirmPassword.$pristine && usrMgrForm.confirmPassword.$invalid }">
+    <label for="confirmPassword">确认密码</label>
+    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+          placeholder="请再次输入密码" ng-model="selectedUser.confirmPassword" pw-check="userPassword">
+    <div ng-show="!usrMgrForm.confirmPassword.$pristine && tagName.confirmPassword.$valid">
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+    </div>
+    <div ng-show="!usrMgrForm.confirmPassword.$pristine && usrMgrForm.confirmPassword.$invalid">
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+    </div>
+</div>
+
+<p>
+    1.form在angular里不是简单的angular了。封装了各种属性<br>
+    2.尽量用最新版本的angular，要不然坑多，不出效果。$error在1.X版本一直测不出。2.0的话连其余效果都黄了<br>
+    3.form-name.input-name.状态，看仔细判断的是哪个input
+</p>
+</body>
+</html>
