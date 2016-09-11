@@ -1,0 +1,53 @@
+ <div my-directive></div><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css" media="screen">
+  div{
+    padding: 6px;
+}
+div.container {
+    border: 1px solid black;
+}
+div.my-info {
+    border: 1px solid blue;
+}
+div.my-directiv{
+    border: 1px solid green;
+}  
+</style>
+
+</head>
+<body>
+<div ng-app="MyApp" ng-controller="nameController">
+   <direct for-name="{{ Name }}"></direct>
+</div>
+<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script> 
+<script>
+  angular.module("MyApp", [])
+    .controller("nameController",function($scope){
+      $scope.Name="张三"; 
+}).directive("direct",function(){
+
+        return{
+
+            restrict: 'ECMA',
+
+            template: '<div>指令中：{{ mame }}</div>',
+
+            scope:{
+
+              mame:'@forName'
+
+            }
+         } 
+  })
+
+
+</script>  
+</body>
+</html>

@@ -18,11 +18,12 @@
     <h2>demo4</h2>
     <div ng-app="app" ng-controller="mainController">
     <div class="a">
-        <p>china</p>
+        <p hello-world>china</p>
+         {{name}}
         <hello-world>
 
             {{name}}haohaoxuexi<br>
-            <strong>尝试一下</strong>
+            <strong>尝试一dddddd下</strong>
         </hello-world>
     </div>
 </div>
@@ -39,7 +40,7 @@ angular.module('app', [])
         scope: {},
         replace: false,
         transclude: true,
-        template: '<div >你看不dddddddd见我</div>'
+        template: '<div ng-transclude>你看不dddddddd见我</div>'
     }
 })
     </script>
