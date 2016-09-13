@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset=utf-8>
+<title>demo</title>
+</head> 
+
+<style>  
+
+</style>  
+    
+<body>
+
+    <script>
+      function mySort(){
+        var args = new Array();
+        var len = arguments.length;
+        for(var i=0;i<len;i++){
+          args.push(arguments[i]);
+        }
+        function compare(num1,num2){
+          return num1-num2;
+        }
+        args.sort(compare);
+        return args;
+      }
+      var result = mySort(50,11,15,32,46,78,100,22,9,0);
+      console.log(result);
+
+    </script>
+    <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    
+</body>
+//先定义一个数组，加工后，return出来。
+ //加工步骤。1.获取参数类数组，将之push到创建的数组里。
+2.在得到的数组里，进行sort（）排序。
+3。返回出来。
+function argu-sort(){
+    var mysort=new Array();
+    var len=arguments.length;
+    for(var i=0;i<len,i++){
+    mysort.push(arguments[i])
+    } 
+mysort.sort(function(num1,num2){return num1-num2})
+
+return mysort;
+}
+</html>
+</body>  
+</html>
