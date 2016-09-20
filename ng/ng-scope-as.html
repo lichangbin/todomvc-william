@@ -1,0 +1,62 @@
+/**
+ * @Author:      william
+ * @DateTime:    2016-09-20 11:19:22
+ * @Description: Description
+ */
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div ng-controller="RoomController as room">
+      <div class="btn-default" ng-click="room.openDoor()">
+        {{room.buttonTitle}}
+        <div ng-controller="OtherRoomController as other">
+          {{room.foo}}这里还是访问到父级上
+          <br />
+          {{other.foo}}
+        </div>
+      </div>
+    </div>
+111111111111
+    <div ng-controller="OtherController">
+      <div class="btn-default" ng-click="openOtherDoor()">
+        Open
+      </div>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script> 
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller("RoomController", function() {
+        this.openDoor = function() {
+          alert("open the door !");
+        };
+        this.buttonTitle = "I am a button";
+        this.foo = "I am foo of RoomController";
+      });
+      app.controller("OtherRoomController", function() {
+        this.openDoor = function() {
+          alert("open the other door !");
+        };
+        this.buttonTitle = "I am a button";
+        this.foo = "I am foo of OtherRoomController";
+      });  
+
+
+
+
+      app.controller("OtherController", function($scope) {
+        $scope.openOtherDoor = function() {
+          alert("open the other door !");
+        };
+      });
+    </script>
+  </body>
+
+</html>
